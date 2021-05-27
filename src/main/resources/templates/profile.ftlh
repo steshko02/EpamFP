@@ -1,8 +1,8 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-    <h4>${username}</h4>
-    <form  method="post">
+    <h5>${username}</h5>
+    <form  action="/profile" method="post">
         <div style="width: 50%">
             <label for="emailInput"> Email: </label>
             <input class="form-control"
@@ -33,6 +33,7 @@
         <div class="my-2">
             <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Submit</button>
             <input type="hidden" name="_csrf" value="${_csrf.token}" />
+        </div>
     </form>
 </@c.page>
 

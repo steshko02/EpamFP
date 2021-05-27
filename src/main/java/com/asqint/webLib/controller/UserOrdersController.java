@@ -4,6 +4,7 @@ import com.asqint.webLib.domain.Book;
 import com.asqint.webLib.domain.User;
 import com.asqint.webLib.repos.BookRepo;
 import com.asqint.webLib.repos.UserRepo;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@PreAuthorize("hasAuthority('USER')")
 public class UserOrdersController {
     private final BookRepo bookRepo;
     private final UserRepo userRepo;
@@ -28,7 +30,7 @@ public class UserOrdersController {
     public String userOrders(@AuthenticationPrincipal User user,
                              Map<String, Object> model
     ) {
-        List<Book> books = new ArrayList<Book>();
+        List<Book> books = new ArrayList<>();
         for(Long id:user.getOrderedBooksId()) {
             books.add(bookRepo.findById(id).orElse(new Book()));
         }

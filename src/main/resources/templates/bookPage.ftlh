@@ -7,7 +7,6 @@
         <div class="row">
             <div class="col-sm-4">
                 <img src="/img/${book.filename}" class="card-img-top" alt="No image">
-
             </div>
             <div class="col-sm-8">
                 <h5 class="display-4">${book.name}</h5>
@@ -44,9 +43,16 @@
                         </#if>
                     </#if>
                 </#if>
+<#--                <#if isAdmin>-->
+<#--                <div class="my-5">-->
+<#--                    <form method="post" action="/bookPage/${book.id}">-->
+<#--                        <input type="submit" value="Delete">-->
+<#--                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>-->
+<#--                    </form>-->
+<#--                </div>-->
+<#--                </#if>-->
             </div>
         </div>
-
     </div>
     </#if>
 

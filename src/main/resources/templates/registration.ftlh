@@ -46,6 +46,7 @@
             <div class="my-2">
                 <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Submit</button>
                 <input type="hidden" name="_csrf" value="${_csrf.token}" />
+            </div>
         </form>
     </div>
 </@c.page>

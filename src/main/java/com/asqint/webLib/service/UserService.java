@@ -3,11 +3,9 @@ package com.asqint.webLib.service;
 import com.asqint.webLib.domain.Role;
 import com.asqint.webLib.domain.User;
 import com.asqint.webLib.repos.UserRepo;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -40,7 +38,7 @@ public class UserService implements UserDetailsService {
     public  void sendMessage(User user){
         String message = String.format(
                 "Hello,%s\n"+
-                        "Welcome to WebLib!\n"+
+                        "Welcome to WebLibrary!\n"+
                         "To activate your account visit this link: http://localhost:8080/activate/%s",
                 user.getUsername(),user.getActivationCode()
         );
@@ -66,7 +64,7 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public boolean updateProfile(User user, String password, String email) {
+    public void updateProfile(User user, String password, String email) {
 
       String userEmail  = user.getEmail();
         boolean isEmailChanged = (email !=null && !email.equals(userEmail)) ||
@@ -85,8 +83,6 @@ public class UserService implements UserDetailsService {
         userRepo.save(user);
         if(isEmailChanged) {
             sendMessage(user);
-            return true;
         }
-        return false;
     }
 }

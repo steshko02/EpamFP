@@ -5,7 +5,7 @@ import com.asqint.webLib.domain.Book;
 import com.asqint.webLib.domain.User;
 import com.asqint.webLib.repos.BookRepo;
 import com.asqint.webLib.repos.UserRepo;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminOrdersController {
     private final UserRepo userRepo;
     private final BookRepo bookRepo;
@@ -24,7 +25,6 @@ public class AdminOrdersController {
         this.userRepo = userRepo;
         this.bookRepo = bookRepo;
     }
-
     @GetMapping("/adminOrders")
     public String adminOrders(Map<String, Object> model) {
         Iterable<User> users = userRepo.findAll();

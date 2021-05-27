@@ -3,6 +3,7 @@ package com.asqint.webLib.controller;
 import com.asqint.webLib.domain.Book;
 import com.asqint.webLib.repos.BookRepo;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
+@PreAuthorize("hasAuthority('ADMIN')")
 public class AddController {
     @Value("${upload.path}")
     private String uploadPath;
